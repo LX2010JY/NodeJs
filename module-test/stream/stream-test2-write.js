@@ -1,4 +1,14 @@
 'use strict';
 var fs = require('fs');
 
-var ws = fs.createWriteStream('output1.txt','utf-8');
+var ws1 = fs.createWriteStream('output1.txt','utf-8');
+ws1.write('使用Stream写入文本数据....\n');
+//以流的形式写入文件，只需要不断调用write()方法，最后以end()结束
+ws1.write('END.');
+
+ws1.end();
+
+var ws2 = fs.createWriteStream('output2.txt','utf-8');
+ws2.write(new Buffer('使用Stream写入二进制文件...\n','utf-8'));
+ws2.write(new Buffer('END.','utf-8'));
+ws2.end();
