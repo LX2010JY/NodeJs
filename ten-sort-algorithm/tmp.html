@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tmp</title>
+	<script src="3-insert_sort.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script type="text/javascript">
+		function Insert_Sort(arr) {
+			if(Object.prototype.toString.call(arr).slice(8,-1)==="Array") {
+				console.time("插入排序时：");
+				for(var i =1;i<arr.length;i++) {
+					var key = arr[i];
+					var j = 0;
+					while(j<i && arr[j] < key) {
+						j++;
+					}
+					for(var k=i;k>j;k--) {
+						arr[k] = arr[k-1];
+					}
+					arr[j] = key;
+				}
+				console.timeEnd("插入排序（从左向右）耗时：")
+				return arr;
+			}
+		}
+
+		var arr = [];
+		for(var i=0;i<1000;i++) {
+			arr[i] = Math.round(Math.random(2)*10000);
+		}
+		console.log(Insert_Sort(arr));
+</script>
+</head>
+<body>
+
+	<input type="button" name="asd" onclick="Insert_Sort([223,345,345,4,64,6,456,234])" value="click" />
+</body>
+</html>
