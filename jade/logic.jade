@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title #{name+"正在学习"+course.toUpperCase()+"的"+logic}
+  body
+    div
+      h2 循环 for each
+      -var data = {"course":'jade',"level":'middle'}
+      - for(var k in data)
+        p=data[k]
+      h3 each 也是循环的一个关键字，不是属于for的
+      each value,key in data
+        p #{key}:#{value}
+      hr
+      h3 数组遍历
+      - var courses = ["node.js","jade","express","koa"]
+      each item in courses
+        p=item
+      hr
+      h3 二维数组遍历
+      - var sections = [{id:1,"item":['a','b']},{id:2,"item":['c','d']},{id:3,"item":['e','f']}]
+      dl
+        each item in sections
+          dt=item.id        
+          each value in item.item
+            dd=value
+      h3 while循环
+      - var n=0
+      ul 
+        while n<4
+          li=n++
+      h3 if else 判断语句
+      - var isImmoc = true
+      - var lessons = ["node","jade","express"]
+      if lessons
+        if lessons.length>0
+          p #{lessons.join(',')}
+        else
+          p no lesson
+      else
+        p no lesson
+      h3 mixin 就像在jade里面定义一个函数一样
+      mixin lesson
+        p i study mixin
+      +lesson
+      mixin func(name,course)
+        strong #{name} is Studying:
+        ul
+          each item in course
+            li=item
+      +func('Lxiao',['node','jade','koa'])          
